@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Not Found — CIFAKE{% endblock %}
+
+{% block content %}
+<section class="section-pad">
+  <div class="container text-center">
+    <div class="empty-state panel mx-auto" style="max-width:520px;">
+      <i class="bi bi-search"></i>
+      <h5>{{ code|default(404) }} — Request could not be completed</h5>
+      <p class="mb-4">{{ message|default("That prediction doesn't exist, or it was already removed.") }}</p>
+      <a href="{{ url_for('index') }}" class="btn btn-scan"><i class="bi bi-house-door"></i> Back to Home</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

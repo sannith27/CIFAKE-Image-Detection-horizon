@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}History - CIFAKE{% endblock %}
+
+{% block content %}
+<section class="page-header">
+  <div class="container d-flex flex-wrap justify-content-between align-items-center gap-3">
+    <div>
+      <h2 class="section-title mb-1"><i class="bi bi-clock-history me-2"></i>Prediction History</h2>
+      <p class="section-sub mb-0">Your private browser history, newest first.</p>
+    </div>
+    <button id="clearHistoryBtn" class="btn btn-outline-ghost d-none" type="button">
+      <i class="bi bi-trash3 me-1"></i> Clear All History
+    </button>
+  </div>
+</section>
+
+<section class="section-pad">
+  <div class="container">
+    <div id="historyPanel" class="panel p-3 p-md-4 d-none">
+      <div class="table-responsive">
+        <table class="table history-table mb-0 align-middle">
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Filename</th>
+              <th>Prediction</th>
+              <th>Confidence</th>
+              <th>Timestamp</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="historyTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="historyEmptyState" class="empty-state panel d-none">
+      <i class="bi bi-inbox"></i>
+      <h5>No predictions yet</h5>
+      <p class="mb-4">Analyze your first image to see it appear here on this browser.</p>
+      <a href="{{ url_for('upload') }}" class="btn btn-scan"><i class="bi bi-upload"></i> Upload Image</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

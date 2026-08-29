@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% block title %}CIFAKE — Detect AI-Generated Images{% endblock %}
+
+{% block content %}
+
+<!-- ============================ HERO ============================ -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="container hero-content">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <span class="eyebrow-badge"><span class="dot"></span>CNN CLASSIFIER · GRAD-CAM EXPLAINABILITY</span>
+        <h1>Is that photo <span class="accent-text">real</span>, or was it <span class="accent-text">generated</span>?</h1>
+        <p class="lead-text">
+          CIFAKE analyzes an image with a trained convolutional neural network and shows you
+          exactly which regions influenced its decision — REAL or AI-generated — with a
+          Grad-CAM visual explanation and a confidence score.
+        </p>
+        <div class="d-flex flex-wrap gap-3 mt-4">
+          <a href="{{ url_for('upload') }}" class="btn btn-scan">
+            <i class="bi bi-upload"></i> Upload Image
+          </a>
+          <a href="{{ url_for('history') }}" class="btn btn-outline-ghost">
+            <i class="bi bi-clock-history"></i> View History
+          </a>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="scan-panel">
+          <div class="scan-frame">
+            <div class="scan-line"></div>
+            <i class="bi bi-image" style="font-size:3rem;color:var(--text-muted);"></i>
+          </div>
+          <div class="scan-readout">
+            <span>MODEL <span class="value">CNN · sigmoid</span></span>
+            <span>INPUT <span class="value">MODEL-SIZED RGB</span></span>
+            <span>STATUS <span class="value">READY</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ STATS ============================ -->
+<section class="stat-strip">
+  <div class="container">
+    <div class="row g-0">
+      <div class="col-6 col-md-3 stat-item">
+        <div class="num">32×32</div>
+        <div class="label">Input Resolution</div>
+      </div>
+      <div class="col-6 col-md-3 stat-item">
+        <div class="num">2</div>
+        <div class="label">Output Classes</div>
+      </div>
+      <div class="col-6 col-md-3 stat-item">
+        <div class="num">Grad-CAM</div>
+        <div class="label">Explainability</div>
+      </div>
+      <div class="col-6 col-md-3 stat-item">
+        <div class="num">&lt;1s</div>
+        <div class="label">Inference Time</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FEATURES ============================ -->
+<section class="section-pad">
+  <div class="container">
+    <div class="text-center mx-auto mb-5 reveal" style="max-width:640px;">
+      <h2 class="section-title">How the analysis works</h2>
+      <p class="section-sub mx-auto">Every upload goes through the same trained pipeline used in the CLI —
+        now wrapped in a browser-friendly workflow.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4 reveal">
+        <div class="feature-card">
+          <div class="feature-icon"><i class="bi bi-cloud-upload"></i></div>
+          <h5>1. Upload</h5>
+          <p>Drag and drop or browse for a JPG, JPEG, or PNG image you want to verify.</p>
+        </div>
+      </div>
+      <div class="col-md-4 reveal">
+        <div class="feature-card">
+          <div class="feature-icon"><i class="bi bi-cpu"></i></div>
+          <h5>2. Classify</h5>
+          <p>The trained CNN scores the image and returns a REAL/FAKE label with a confidence percentage.</p>
+        </div>
+      </div>
+      <div class="col-md-4 reveal">
+        <div class="feature-card">
+          <div class="feature-icon"><i class="bi bi-graph-up"></i></div>
+          <h5>3. Explain</h5>
+          <p>Grad-CAM highlights the pixels that most influenced the verdict, shown as a heatmap overlay.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CTA ============================ -->
+<section class="section-pad pt-0">
+  <div class="container">
+    <div class="panel p-5 text-center reveal">
+      <h3 class="mb-2">Ready to analyze an image?</h3>
+      <p class="section-sub mx-auto mb-4">Get a REAL/FAKE verdict, confidence score, and Grad-CAM explanation in seconds.</p>
+      <a href="{{ url_for('upload') }}" class="btn btn-scan">
+        <i class="bi bi-upload"></i> Start Analysis
+      </a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

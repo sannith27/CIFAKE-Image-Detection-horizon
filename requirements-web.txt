@@ -1,0 +1,14 @@
+# Runtime dependencies for the Flask inference web app.
+# Keep training, evaluation, Kaggle, and notebook packages in requirements.txt.
+# In particular, do not install scikit-learn/SciPy here: Keras imports their
+# wrappers when present, which exceeds the memory available on small hosts.
+
+tensorflow==2.21.0
+numpy>=1.26,<2.6
+pandas>=2.2,<4
+opencv-python-headless>=4.9,<6
+Pillow>=10.3,<13
+matplotlib>=3.9,<4
+Flask>=3.0,<4
+reportlab>=4.2,<6
+gunicorn>=23,<27

@@ -1,0 +1,48 @@
+# ==============================================================================
+# CIFAKE Project - Python Dependencies
+# ==============================================================================
+# Install with:
+#   python -m pip install --upgrade pip
+#   pip install -r requirements.txt
+#
+# Python 3.13 note:
+# TensorFlow support for Python 3.13 starts with recent TensorFlow releases.
+# The lower bound below intentionally allows pip to select TensorFlow 2.21+
+# on Python 3.13 while still working on Python 3.10-3.12.
+# ==============================================================================
+
+# Core deep learning framework. TensorFlow bundles tf.keras/Keras.
+tensorflow>=2.20
+tensorboard>=2.20
+
+# Numerical / data handling
+numpy>=1.26
+pandas>=2.2
+
+# Image processing
+opencv-python>=4.9
+Pillow>=10.3
+
+# Visualization
+matplotlib>=3.9
+seaborn>=0.13
+
+# Machine learning metrics / utilities
+scikit-learn>=1.5
+
+# Optional dataset download helper
+kaggle>=1.6
+
+# Notebook support
+jupyter>=1.0
+ipykernel>=6.29
+
+# ==============================================================================
+# Flask Web Application Dependencies (new — added for the browser UI)
+# ==============================================================================
+# Web framework serving the upload / result / history pages.
+Flask>=3.0
+
+# PDF report generation (Download Report feature).
+reportlab>=4.2
+gunicorn>=23.0

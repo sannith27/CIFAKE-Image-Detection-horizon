@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Analyze an Image — CIFAKE{% endblock %}
+
+{% block content %}
+<section class="page-header">
+  <div class="container">
+    <h2 class="section-title mb-1"><i class="bi bi-upload me-2"></i>Analyze an Image</h2>
+    <p class="section-sub mb-0">Upload your own BMP, GIF, JPG, JPEG, PNG, or WEBP image to classify it as REAL or AI-generated (FAKE).</p>
+  </div>
+</section>
+
+<section class="section-pad">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+
+        {% if not model_ready %}
+        <div class="alert alert-warning cifake-alert mb-4">
+          <i class="bi bi-exclamation-triangle-fill me-2"></i>
+          The trained model could not be loaded. Make sure
+          <code>outputs/models/cifake_final_model.keras</code> exists, then restart the server.
+        </div>
+        {% endif %}
+
+        <form id="uploadForm" method="POST" action="{{ url_for('predict') }}" enctype="multipart/form-data">
+          <div id="dropzone" class="dropzone" tabindex="0" role="button" aria-label="Upload image">
+            <div class="dz-icon"><i class="bi bi-cloud-arrow-up"></i></div>
+            <h5>Drag &amp; drop an image here</h5>
+            <p class="mb-1">or click to browse your files</p>
+            <p class="mb-0"><small>Supported formats: BMP · GIF · JPG · JPEG · PNG · WEBP (max 10 MB)</small></p>
+            <input type="file" id="fileInput" name="image" accept=".bmp,.gif,.jpg,.jpeg,.png,.webp" hidden required>
+          </div>
+
+          <div id="previewWrap" class="preview-wrap mt-4">
+            <div class="panel p-3">
+              <div class="preview-frame mb-3">
+                <img id="previewImg" src="" alt="Preview">
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <span id="previewName" class="text-muted small mono"></span>
+                <button type="submit" id="analyzeBtn" class="btn btn-scan" disabled>
+                  <i class="bi bi-search"></i> Analyze Image
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div id="spinnerOverlay" class="spinner-overlay">
+            <div class="spinner-border text-info" role="status"></div>
+            <span>Running CNN inference &amp; Grad-CAM…</span>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
